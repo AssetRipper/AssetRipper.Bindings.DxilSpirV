@@ -11,10 +11,7 @@ AssetRipper.Bindings.DxilSpirV
 --libraryPath
 dxil-spirv
 --config
-exclude-anonymous-field-helpers
-exclude-com-proxies
 exclude-enum-operators
-exclude-funcs-with-body
 exclude-using-statics-for-enums
 generate-aggressive-inlining
 generate-callconv-member-function
