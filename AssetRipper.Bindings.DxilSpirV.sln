@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetRipper.Bindings.DxilSpirV", "AssetRipper.Bindings.DxilSpirV\AssetRipper.Bindings.DxilSpirV.csproj", "{EDC4BA9E-DDDA-4CC6-B350-27B8FA7BE6F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{669E4700-F7F1-4D26-ADE4-4AD63F54A403}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		generate.bat = generate.bat
+		generate.rsp = generate.rsp
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{2DE789F1-25C3-4984-87F0-67E9182FAB80}"
+	ProjectSection(SolutionItems) = preProject
+		include\dxil_spirv_c.h = include\dxil_spirv_c.h
+		include\README.md = include\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDC4BA9E-DDDA-4CC6-B350-27B8FA7BE6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC4BA9E-DDDA-4CC6-B350-27B8FA7BE6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC4BA9E-DDDA-4CC6-B350-27B8FA7BE6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC4BA9E-DDDA-4CC6-B350-27B8FA7BE6F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

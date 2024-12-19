@@ -1,0 +1,14 @@
+namespace AssetRipper.Bindings.DxilSpirV;
+
+public enum dxil_spv_result
+{
+    DXIL_SPV_SUCCESS = 0,
+    DXIL_SPV_ERROR_OUT_OF_MEMORY = -1,
+    DXIL_SPV_ERROR_GENERIC = -2,
+    DXIL_SPV_ERROR_UNSUPPORTED_FEATURE = -3,
+    DXIL_SPV_ERROR_PARSER = -4,
+    DXIL_SPV_ERROR_FAILED_VALIDATION = -5,
+    DXIL_SPV_ERROR_INVALID_ARGUMENT = -6,
+    DXIL_SPV_ERROR_NO_DATA = -7,
+    DXIL_SPV_RESULT_INT_MAX = 0x7fffffff,
+}
