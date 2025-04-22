@@ -19,6 +19,9 @@ internal static class Program
 
 		StringBuilder sb = new();
 		sb.AppendLine(beginningContent);
+		sb.AppendLine("--exclude");
+		sb.AppendLine("DXIL_SPV_TRUE");
+		sb.AppendLine("DXIL_SPV_FALSE");
 		sb.AppendLine("--remap");
 		foreach ((string original, string cleaned) in reflectionGenerator.RemappedNames)
 		{

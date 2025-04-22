@@ -207,10 +207,4 @@ public static unsafe partial class NativeMethods
 
     [NativeTypeName("#define DXIL_SPV_INSTRUCTION_INSTRUMENTATION_INTERFACE_VERSION 2")]
     public const int InstructionInstrumentationInterfaceVersion = 2;
-
-    [NativeTypeName("#define DXIL_SPV_TRUE ((dxil_spv_bool)1)")]
-    public const byte True = ((byte)(1));
-
-    [NativeTypeName("#define DXIL_SPV_FALSE ((dxil_spv_bool)0)")]
-    public const byte False = ((byte)(0));
 }
