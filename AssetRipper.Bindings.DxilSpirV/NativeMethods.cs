@@ -1,5 +1,5 @@
 ﻿namespace AssetRipper.Bindings.DxilSpirV;
 
-public partial class DxilSpirV
+public partial class NativeMethods
 {
 }

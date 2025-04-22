@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace AssetRipper.Bindings.DxilSpirV;
 
-public static unsafe partial class DxilSpirV
+public static unsafe partial class NativeMethods
 {
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void dxil_spv_get_version([NativeTypeName("unsigned int *")] uint* major, [NativeTypeName("unsigned int *")] uint* minor, [NativeTypeName("unsigned int *")] uint* patch);

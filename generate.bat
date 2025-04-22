@@ -1,5 +1,5 @@
 dotnet tool install --global ClangSharpPInvokeGenerator --version 18.1.0.4
-cd AssetRipper.Bindings.DxilSpirV
+cd AssetRipper.Bindings.DxilSpirV.Original
 if not exist "Generated" mkdir "Generated"
 rmdir /s /q Generated
 cd ..

@@ -3,13 +3,15 @@ dxil_spirv_c.h
 --file-directory
 ./include/
 --methodClassName
-DxilSpirV
+NativeMethods
 --namespace
 AssetRipper.Bindings.DxilSpirV
 --output
-./AssetRipper.Bindings.DxilSpirV/Generated
+./AssetRipper.Bindings.DxilSpirV.Original/Generated
 --libraryPath
 dxil-spirv-c-shared
+--with-type
+dxil_spv_vulkan_shader_stage_io_flags=uint
 --config
 exclude-enum-operators
 exclude-using-statics-for-enums
