@@ -9,7 +9,7 @@ AssetRipper.Bindings.DxilSpirV
 --output
 ./AssetRipper.Bindings.DxilSpirV/Generated
 --libraryPath
-dxil-spirv
+dxil-spirv-c-shared
 --config
 exclude-enum-operators
 exclude-using-statics-for-enums
@@ -33,5 +33,5 @@ log-exclusions
 log-visited-files
 multi-file
 preview-codegen
-trimmable-vtbls
+explicit-vtbls
 windows-types

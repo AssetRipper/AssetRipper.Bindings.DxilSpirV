@@ -34,11 +34,11 @@ extern "C" {
 #endif
 
 #define DXIL_SPV_API_VERSION_MAJOR 2
-#define DXIL_SPV_API_VERSION_MINOR 44
+#define DXIL_SPV_API_VERSION_MINOR 50
 #define DXIL_SPV_API_VERSION_PATCH 0
 
 #define DXIL_SPV_DESCRIPTOR_QA_INTERFACE_VERSION 1
-#define DXIL_SPV_INSTRUCTION_INSTRUMENTATION_INTERFACE_VERSION 1
+#define DXIL_SPV_INSTRUCTION_INSTRUMENTATION_INTERFACE_VERSION 2
 
 #if !defined(DXIL_SPV_PUBLIC_API)
 #if defined(DXIL_SPV_EXPORT_SYMBOLS)
@@ -220,8 +220,18 @@ typedef enum dxil_spv_hit_group_type
 typedef enum dxil_spv_shader_quirk
 {
 	DXIL_SPV_SHADER_QUIRK_NONE = 0,
+	/* This is softer and only applies to shaders that uses thread group coherence at least once.
+	 * If that is the case, promotes all other uses too. Intended to be suitable for a game-global workaround. */
 	DXIL_SPV_SHADER_QUIRK_FORCE_DEVICE_MEMORY_BARRIERS_THREAD_GROUP_COHERENCE = 1,
 	DXIL_SPV_SHADER_QUIRK_ASSUME_BROKEN_SUB_8x8_CUBE_MIPS = 2,
+	DXIL_SPV_SHADER_QUIRK_ROBUST_PHYSICAL_CBV_FORWARDING = 3,
+	DXIL_SPV_SHADER_QUIRK_MESH_OUTPUTS_ROBUSTNESS = 4,
+	DXIL_SPV_SHADER_QUIRK_AGGRESSIVE_NONUNIFORM = 5,
+	DXIL_SPV_SHADER_QUIRK_ROBUST_PHYSICAL_CBV = 6,
+	/* This is a harder workaround which forces UAV barriers even if shader does not use anything like that.
+	 * Intended to be used with specific shaders since it's not feasible to detect the race condition algorithmically. */
+	DXIL_SPV_SHADER_QUIRK_PROMOTE_GROUP_TO_DEVICE_MEMORY_BARRIER = 7,
+	DXIL_SPV_SHADER_QUIRK_GROUP_SHARED_AUTO_BARRIER = 8,
 	DXIL_SPV_SHADER_QUIRK_INT_MAX = 0x7fffffff
 } dxil_spv_shader_quirk;
 
@@ -429,6 +439,8 @@ typedef enum dxil_spv_option
 	DXIL_SPV_OPTION_COMPUTE_SHADER_DERIVATIVES = 40,
 	DXIL_SPV_OPTION_INSTRUCTION_INSTRUMENTATION = 41,
 	DXIL_SPV_OPTION_SHADER_QUIRK = 42,
+	DXIL_SPV_OPTION_EXTENDED_ROBUSTNESS = 43,
+	DXIL_SPV_OPTION_MAX_TESS_FACTOR = 44,
 	DXIL_SPV_OPTION_INT_MAX = 0x7fffffff
 } dxil_spv_option;
 
@@ -443,6 +455,8 @@ typedef enum dxil_spv_instruction_instrumentation_type
 	DXIL_SPV_INSTRUCTION_INSTRUMENTATION_TYPE_FULL_NAN_INF = 0,
 	DXIL_SPV_INSTRUCTION_INSTRUMENTATION_TYPE_EXTERNALLY_VISIBLE_WRITE_NAN_INF = 1,
 	DXIL_SPV_INSTRUCTION_INSTRUMENTATION_TYPE_FLUSH_NAN_TO_ZERO = 2,
+	DXIL_SPV_INSTRUCTION_INSTRUMENTATION_TYPE_EXPECT_ASSUME = 3,
+	DXIL_SPV_INSTRUCTION_INSTRUMENTATION_TYPE_BUFFER_SYNCHRONIZATION_VALIDATION = 4,
 	DXIL_SPV_INSTRUCTION_INSTRUMENTATION_INT_MAX = 0x7fffffff
 } dxil_spv_instruction_instrumentation_type;
 
@@ -599,6 +613,7 @@ typedef struct dxil_spv_option_barycentric_khr
 	dxil_spv_bool supported;
 } dxil_spv_option_barycentric_khr;
 
+/* Obsolete. Use the shader quirk version of this instead. */
 typedef struct dxil_spv_option_robust_physical_cbv_load
 {
 	dxil_spv_option_base base;
@@ -745,6 +760,20 @@ typedef struct dxil_spv_option_shader_quirk
 	dxil_spv_option_base base;
 	dxil_spv_shader_quirk quirk;
 } dxil_spv_option_shader_quirk;
+
+typedef struct dxil_spv_option_extended_robustness
+{
+	dxil_spv_option_base base;
+	dxil_spv_bool robust_group_shared;
+	dxil_spv_bool robust_alloca;
+	dxil_spv_bool robust_constant_lut;
+} dxil_spv_option_extended_robustness;
+
+typedef struct dxil_spv_option_max_tess_factor
+{
+	dxil_spv_option_base base;
+	unsigned max_tess_factor;
+} dxil_spv_option_max_tess_factor;
 
 /* Gets the ABI version used to build this library. Used to detect API/ABI mismatches. */
 DXIL_SPV_PUBLIC_API void dxil_spv_get_version(unsigned *major, unsigned *minor, unsigned *patch);
@@ -943,6 +972,12 @@ DXIL_SPV_PUBLIC_API dxil_spv_result dxil_spv_converter_get_patch_vertex_count(
  * Designed to map closely to D3D12 feature checks. */
 DXIL_SPV_PUBLIC_API dxil_spv_bool dxil_spv_converter_uses_shader_feature(
 	dxil_spv_converter converter, dxil_spv_shader_feature feature);
+
+/* Intended to be added to the GLSL output in repro suite.
+ * Attempts to analyze the DXIL for potential out of spec behavior that needs another pair of eyes.
+ * Lifetime of string is only as long as converter is alive.
+ * Returns NULL when there are no warnings. */
+DXIL_SPV_PUBLIC_API const char *dxil_spv_converter_get_analysis_warnings(dxil_spv_converter converter);
 
 /* Use an optimized allocation scheme.
  * Call begin before allocating any dxil_spv objects,
