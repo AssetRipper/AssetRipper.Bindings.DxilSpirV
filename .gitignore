@@ -9,3 +9,4 @@ bin
 **/build/
 .vscode
 launchSettings.json
+NativeLibraries/
