@@ -257,4 +257,4 @@ dotnet_style_qualification_for_property = false:silent
 dotnet_style_qualification_for_method = false:silent
 dotnet_style_qualification_for_event = false:silent
 dotnet_style_prefer_collection_expression = when_types_exactly_match:suggestion
-indent_style = space
+indent_style = tab

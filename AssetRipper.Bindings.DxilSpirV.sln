@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetRipper.Bindings.DxilSp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetRipper.Bindings.DxilSpirV.Original", "AssetRipper.Bindings.DxilSpirV.Original\AssetRipper.Bindings.DxilSpirV.Original.csproj", "{3CD260D6-EA01-4CEB-9B2C-E7C18CEDC7C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetRipper.Bindings.DxilSpirV.Example", "AssetRipper.Bindings.DxilSpirV.Example\AssetRipper.Bindings.DxilSpirV.Example.csproj", "{01398808-3A88-4C1A-809B-9D7ADBFFE759}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{3CD260D6-EA01-4CEB-9B2C-E7C18CEDC7C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CD260D6-EA01-4CEB-9B2C-E7C18CEDC7C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CD260D6-EA01-4CEB-9B2C-E7C18CEDC7C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01398808-3A88-4C1A-809B-9D7ADBFFE759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01398808-3A88-4C1A-809B-9D7ADBFFE759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01398808-3A88-4C1A-809B-9D7ADBFFE759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01398808-3A88-4C1A-809B-9D7ADBFFE759}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
