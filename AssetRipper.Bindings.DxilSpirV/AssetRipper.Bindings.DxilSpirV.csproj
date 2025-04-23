@@ -14,7 +14,7 @@
 		<Company>AssetRipper</Company>
 		<Description>Wrapper library for dxil-spirv.</Description>
 
-		<PackageId>AssetRipper.Bindings.SpirVCross</PackageId>
+		<PackageId>AssetRipper.Bindings.DxilSpirV</PackageId>
 		<PackageTags>C# shader spirv dxil</PackageTags>
 		<RepositoryUrl>https://github.com/AssetRipper/AssetRipper.Bindings.DxilSpirV</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
