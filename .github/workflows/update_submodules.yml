@@ -38,9 +38,7 @@ jobs:
           fi
 
       - name: Install NuGet CLI
-        if: env.changed == 'true'
-        run: |
-          sudo apt install -y nuget
+        uses: nuget/setup-nuget@v2
 
       - name: Download NuGet packages
         if: env.changed == 'true'
