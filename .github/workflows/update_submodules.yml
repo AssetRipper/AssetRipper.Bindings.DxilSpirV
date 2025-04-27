@@ -28,6 +28,7 @@ jobs:
 
       - name: Check if there are changes
         id: changes
+        shell: bash
         run: |
           if git diff --cached --quiet; then
             echo "No changes."
@@ -46,7 +47,7 @@ jobs:
       - name: Run generator
         if: env.changed == 'true'
         run: |
-          bash ./generate.bat
+          ./generate.bat
           git add -A
 
       - name: Check if it can build
@@ -55,6 +56,7 @@ jobs:
 
       - name: Commit and push changes
         if: env.changed == 'true'
+        shell: bash
         run: |
           BRANCH_NAME="update-submodules-$(date +%Y%m%d%H%M%S)"
           git checkout -b $BRANCH_NAME
