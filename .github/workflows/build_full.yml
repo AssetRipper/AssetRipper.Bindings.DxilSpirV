@@ -164,7 +164,11 @@ jobs:
         path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/osx-x64/native/
 
     - name: Build
-      run: dotnet build -c Release
+      run: dotnet build -c Release /p:VersionSuffix=${{ github.run_number }}
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Upload NuGet Package
+      uses: actions/upload-artifact@v4
+      with:
+        name: NuGet Package
+        path: ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg
+        if-no-files-found: error
