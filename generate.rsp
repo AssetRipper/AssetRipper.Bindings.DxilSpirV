@@ -1,7 +1,7 @@
 --file
 dxil_spirv_c.h
 --file-directory
-./include/
+./NativeCode/
 --methodClassName
 NativeMethods
 --namespace

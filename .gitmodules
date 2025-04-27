@@ -1,0 +1,3 @@
+[submodule "NativeCode"]
+	path = NativeCode
+	url = https://github.com/HansKristian-Work/dxil-spirv.git
