@@ -45,27 +45,23 @@ jobs:
         if: env.changed == 'true'
         run: sudo apt install mono-complete
 
-      - name: Download NuGet packages
+      - name: Download and Extract NuGet packages
         if: env.changed == 'true'
         run: |
+          # Download NuGet packages
           nuget install libClang.runtime.linux-x64 -OutputDirectory ${{ github.workspace }}/nuget-packages
           nuget install libClangSharp.runtime.linux-x64 -OutputDirectory ${{ github.workspace }}/nuget-packages
 
-      - name: Extract specific files
-        if: env.changed == 'true'
-        run: |
-          # Create the bin directory to extract the file to
+          # Unzip the packages
           mkdir -p ${{ github.workspace }}/nuget-packages/bin
-          # Use wildcard to match any file, for example, *.dll
-          unzip ${{ github.workspace }}/nuget-packages/*.nupkg '*.so' -o -j -d ${{ github.workspace }}/nuget-packages/bin
+          for file in ${{ github.workspace }}/nuget-packages/*.nupkg; do
+            unzip "$file" '*.so' -o -j -d ${{ github.workspace }}/nuget-packages/bin
+          done
 
-      - name: Make files executable
-        if: env.changed == 'true'
-        run: chmod +x ${{ github.workspace }}/nuget-packages/bin/*.so
+          # Make files executable
+          chmod +x ${{ github.workspace }}/nuget-packages/bin/*.so
 
-      - name: Add to system path
-        if: env.changed == 'true'
-        run: |
+          # Add to system path
           echo "${{ github.workspace }}/nuget-packages/bin" >> $GITHUB_ENV
 
       - name: Setup .NET
