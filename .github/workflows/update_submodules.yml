@@ -46,6 +46,8 @@ jobs:
       - name: Run generator
         if: env.changed == 'true'
         run: |
+          dotnet tool install --global libClang.runtime.linux-x64
+          dotnet tool install --global libClangSharp.runtime.linux-x64
           bash ./generate.bat
           git add -A
 
