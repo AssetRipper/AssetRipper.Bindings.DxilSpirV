@@ -164,6 +164,7 @@ jobs:
         path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/osx-x64/native/
 
     - name: Build
+      working-directory: ./AssetRipper.Bindings.DxilSpirV
       run: dotnet build -c Release /p:VersionSuffix=${{ github.run_number }}
 
     - name: Upload NuGet Package
