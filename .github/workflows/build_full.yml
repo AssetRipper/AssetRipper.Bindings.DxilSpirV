@@ -43,12 +43,10 @@ jobs:
 
       - name: Update Submodules
         run: git submodule update --init --recursive
-
-      - name: Navigate to Submodule
-        run: cd NativeCode
-
+        
       - name: Build (x64)
         if: matrix.config.arch == 'x64'
+        working-directory: ./NativeCode
         run: |
           mkdir build
           cd build
@@ -57,6 +55,7 @@ jobs:
 
       - name: Build (Windows ARM64)
         if: matrix.config.os == 'Windows' && matrix.config.arch == 'arm64'
+        working-directory: ./NativeCode
         run: |
           mkdir build
           cd build
@@ -65,6 +64,7 @@ jobs:
 
       - name: Build (Linux ARM64)
         if: matrix.config.os == 'Linux' && matrix.config.arch == 'arm64'
+        working-directory: ./NativeCode
         run: |
           mkdir build
           cd build
@@ -77,6 +77,7 @@ jobs:
 
       - name: Build (macOS ARM64)
         if: matrix.config.os == 'MacOS' && matrix.config.arch == 'arm64'
+        working-directory: ./NativeCode
         run: |
           mkdir build
           cd build
@@ -86,6 +87,7 @@ jobs:
           cmake --build . --config Release
 
       - name: List Files
+        working-directory: ./NativeCode
         run: ls -R build
 
       - name: Upload (Windows)
@@ -94,7 +96,7 @@ jobs:
         with:
           name: output_${{ matrix.config.name }}
           path: |
-            build/Release/dxil-spirv-c-shared.dll
+            NativeCode/build/Release/dxil-spirv-c-shared.dll
           if-no-files-found: error
 
       - name: Upload (Linux)
@@ -103,7 +105,7 @@ jobs:
         with:
           name: output_${{ matrix.config.name }}
           path: |
-            build/libdxil-spirv-c-shared.so
+            NativeCode/build/libdxil-spirv-c-shared.so
           if-no-files-found: error
 
       - name: Upload (MacOS)
@@ -112,7 +114,7 @@ jobs:
         with:
           name: output_${{ matrix.config.name }}
           path: |
-            build/libdxil-spirv-c-shared.dylib
+            NativeCode/build/libdxil-spirv-c-shared.dylib
           if-no-files-found: error
 
   build_managed:
@@ -126,9 +128,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Restore dependencies
-      run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build
     - name: Test
       run: dotnet test --no-build --verbosity normal
