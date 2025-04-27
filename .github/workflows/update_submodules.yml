@@ -54,7 +54,8 @@ jobs:
 
           # Unzip the packages
           mkdir -p ${{ github.workspace }}/nuget-packages/bin
-          for file in ${{ github.workspace }}/nuget-packages/*.nupkg; do
+          for file in ${{ github.workspace }}/nuget-packages/; do
+            echo "Unzipping $file"
             unzip "$file" '*.so' -o -j -d ${{ github.workspace }}/nuget-packages/bin
           done
 
