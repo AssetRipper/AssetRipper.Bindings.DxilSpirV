@@ -9,6 +9,7 @@ on:
 
 jobs:
   build_native:
+    name: Build - ${{ matrix.config.os }} ${{ matrix.config.arch }}
     runs-on: ${{ matrix.config.runner }}
 
     strategy:
@@ -21,7 +22,6 @@ jobs:
           - { name: mac_x64, runner: macos-latest, os: MacOS, arch: x64 }
           - { name: mac_arm64, runner: macos-latest, os: MacOS, arch: arm64 }
 
-    name: Build - ${{ matrix.config.os }} ${{ matrix.config.arch }}
     steps:
       - name: Checkout repository (with submodules)
         uses: actions/checkout@v4
@@ -94,41 +94,77 @@ jobs:
         if: matrix.config.os == 'Windows'
         uses: actions/upload-artifact@v4
         with:
-          name: output_${{ matrix.config.name }}
-          path: |
-            NativeCode/build/Release/dxil-spirv-c-shared.dll
+          name: native_${{ matrix.config.name }}
+          path: NativeCode/build/Release/dxil-spirv-c-shared.dll
           if-no-files-found: error
 
       - name: Upload (Linux)
         if: matrix.config.os == 'Linux'
         uses: actions/upload-artifact@v4
         with:
-          name: output_${{ matrix.config.name }}
-          path: |
-            NativeCode/build/libdxil-spirv-c-shared.so
+          name: native_${{ matrix.config.name }}
+          path: NativeCode/build/libdxil-spirv-c-shared.so
           if-no-files-found: error
 
       - name: Upload (MacOS)
         if: matrix.config.os == 'MacOS'
         uses: actions/upload-artifact@v4
         with:
-          name: output_${{ matrix.config.name }}
-          path: |
-            NativeCode/build/libdxil-spirv-c-shared.dylib
+          name: native_${{ matrix.config.name }}
+          path: NativeCode/build/libdxil-spirv-c-shared.dylib
           if-no-files-found: error
 
   build_managed:
-
+    name: Build - Managed
     runs-on: ubuntu-latest
     needs: build_native
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
+    - name: Download Native - Windows Arm64
+      uses: actions/download-artifact@v4
+      with:
+        name: native_win_arm64
+        path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/win-arm64/native/
+
+    - name: Download Native - Windows x64
+      uses: actions/download-artifact@v4
+      with:
+        name: native_win_x64
+        path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/win-x64/native/
+
+    - name: Download Native - Linux Arm64
+      uses: actions/download-artifact@v4
+      with:
+        name: native_linux_arm64
+        path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/linux-arm64/native/
+
+    - name: Download Native - Linux x64
+      uses: actions/download-artifact@v4
+      with:
+        name: native_linux_x64
+        path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/linux-x64/native/
+
+    - name: Download Native - Mac Arm64
+      uses: actions/download-artifact@v4
+      with:
+        name: native_mac_arm64
+        path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/osx-arm64/native/
+
+    - name: Download Native - Mac x64
+      uses: actions/download-artifact@v4
+      with:
+        name: native_mac_x64
+        path: ./AssetRipper.Bindings.DxilSpirV/NativeLibraries/osx-x64/native/
+
     - name: Build
-      run: dotnet build
+      run: dotnet build -c Release
+
     - name: Test
       run: dotnet test --no-build --verbosity normal
