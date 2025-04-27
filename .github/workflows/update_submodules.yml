@@ -57,7 +57,7 @@ jobs:
           # Create the bin directory to extract the file to
           mkdir -p ${{ github.workspace }}/nuget-packages/bin
           # Use wildcard to match any file, for example, *.dll
-          unzip -o "${{ github.workspace }}/nuget-packages/*.runtime.linux-x64*/runtimes/linux-x64/native/*.so" -d ${{ github.workspace }}/nuget-packages/bin
+          unzip ${{ github.workspace }}/nuget-packages/*.nupkg '*.so' -o -j -d ${{ github.workspace }}/nuget-packages/bin
 
       - name: Make files executable
         if: env.changed == 'true'
