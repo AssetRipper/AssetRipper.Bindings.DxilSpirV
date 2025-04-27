@@ -6,7 +6,7 @@ internal class Program
 	{
 		Logger.AddConsoleLogger();
 		byte[] data = File.ReadAllBytes(args[0]);
-		File.WriteAllBytes("output.spv", ConvertDxil(data));
+		File.WriteAllBytes(args[1], ConvertDxil(data));
 	}
 
 	private static byte[] ConvertDxil(ReadOnlySpan<byte> data)

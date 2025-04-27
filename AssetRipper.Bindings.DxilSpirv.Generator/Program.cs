@@ -15,32 +15,33 @@ internal static class Program
 		ReflectionGenerator reflectionGenerator = new();
 		reflectionGenerator.AnalyzeAssembly(typeof(NativeMethods).Assembly);
 
-		string beginningContent = File.ReadAllText(RepositoryRoot + "generate.rsp").Replace(OriginalOutputPath, OutputPath, StringComparison.Ordinal);
-
-		StringBuilder sb = new();
-		sb.AppendLine(beginningContent);
-		sb.AppendLine("--exclude");
-		sb.AppendLine("DXIL_SPV_TRUE");
-		sb.AppendLine("DXIL_SPV_FALSE");
-		sb.AppendLine("--remap");
-		foreach ((string original, string cleaned) in reflectionGenerator.RemappedNames)
-		{
-			sb.AppendLine($"{original}={cleaned}");
-		}
-
 		string currentDirectory = Directory.GetCurrentDirectory();
 		try
 		{
-			Directory.SetCurrentDirectory(RepositoryRoot);
+			Directory.SetCurrentDirectory(Path.Combine(AppContext.BaseDirectory, RepositoryRoot));
+
+			string beginningContent = File.ReadAllText("generate.rsp").Replace(OriginalOutputPath, OutputPath, StringComparison.Ordinal);
+
+			StringBuilder sb = new();
+			sb.AppendLine(beginningContent);
+			sb.AppendLine("--exclude");
+			sb.AppendLine("DXIL_SPV_TRUE");
+			sb.AppendLine("DXIL_SPV_FALSE");
+			sb.AppendLine("--remap");
+			foreach ((string original, string cleaned) in reflectionGenerator.RemappedNames)
+			{
+				sb.AppendLine($"{original}={cleaned}");
+			}
+
 			if (Directory.Exists(OutputPath))
 			{
 				Directory.Delete(OutputPath, true);
 			}
 
-			const string ResponsePath = "generator_actual.rsp";
+			const string ResponsePath = "generate_actual.rsp";
 			File.WriteAllText(ResponsePath, sb.ToString());
 
-			Process? process = Process.Start(new ProcessStartInfo("ClangSharpPInvokeGenerator", "@generator_actual.rsp"));
+			Process? process = Process.Start(new ProcessStartInfo("ClangSharpPInvokeGenerator", "@generate_actual.rsp"));
 
 			process?.WaitForExit();
 
