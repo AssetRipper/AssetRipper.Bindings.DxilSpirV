@@ -1,5 +1,9 @@
 name: Update Submodules
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   schedule:
     - cron: '0 0 * * *'  # runs every day at midnight UTC
@@ -54,22 +58,14 @@ jobs:
         if: env.changed == 'true'
         run: dotnet build
 
-      - name: Commit and push changes
-        if: env.changed == 'true'
-        shell: bash
-        run: |
-          BRANCH_NAME="update-submodules-$(date +%Y%m%d%H%M%S)"
-          git checkout -b $BRANCH_NAME
-          git commit -m "Update submodules"
-          git push origin $BRANCH_NAME
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_ENV
-
       - name: Create Pull Request
         if: env.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ env.branch_name }}
+          commit-message: Update submodules
+          branch: "update-submodules"
+          delete-branch: true
           title: "Update Git submodules"
           body: |
             This PR updates the Git submodules to their latest commits.
