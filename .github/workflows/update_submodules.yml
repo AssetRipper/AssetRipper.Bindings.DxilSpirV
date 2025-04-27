@@ -37,6 +37,12 @@ jobs:
             echo "changed=true" >> $GITHUB_ENV
           fi
 
+      - name: Setup .NET
+        if: env.changed == 'true'
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
       - name: Install NuGet CLI
         if: env.changed == 'true'
         uses: nuget/setup-nuget@v2
@@ -68,12 +74,6 @@ jobs:
           # Add to system path
           echo "Adding to system path"
           echo "${{ github.workspace }}/nuget-packages/bin" >> $GITHUB_PATH
-
-      - name: Setup .NET
-        if: env.changed == 'true'
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
 
       - name: Run generator
         if: env.changed == 'true'
