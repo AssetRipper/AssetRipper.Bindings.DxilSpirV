@@ -38,7 +38,12 @@ jobs:
           fi
 
       - name: Install NuGet CLI
+        if: env.changed == 'true'
         uses: nuget/setup-nuget@v2
+
+      - name: Install Mono
+        if: env.changed == 'true'
+        run: sudo apt install mono-complete
 
       - name: Download NuGet packages
         if: env.changed == 'true'
