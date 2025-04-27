@@ -66,6 +66,7 @@ jobs:
           done
 
           # Add to system path
+          echo "Adding to system path"
           echo "${{ github.workspace }}/nuget-packages/bin" >> $GITHUB_ENV
 
       - name: Setup .NET
