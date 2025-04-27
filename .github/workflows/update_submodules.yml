@@ -7,7 +7,7 @@ on:
 
 jobs:
   update-submodules:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository (with submodules)
@@ -42,38 +42,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
-
-      - name: Install NuGet CLI
-        if: env.changed == 'true'
-        uses: nuget/setup-nuget@v2
-
-      - name: Install Mono
-        if: env.changed == 'true'
-        run: sudo apt install mono-complete
-
-      - name: Download and Extract NuGet packages
-        if: env.changed == 'true'
-        run: |
-          # Download NuGet packages
-          nuget install libClang.runtime.linux-x64 -OutputDirectory ${{ github.workspace }}/nuget-packages
-          nuget install libClangSharp.runtime.linux-x64 -OutputDirectory ${{ github.workspace }}/nuget-packages
-
-          mkdir -p ${{ github.workspace }}/nuget-packages/bin
-
-          # List the directory contents
-          ls -R ${{ github.workspace }}/nuget-packages
-
-          # Moving the libraries to the bin directory
-          files=($(find ${{ github.workspace }}/nuget-packages -type f -name "*.so"))
-          for file in "${files[@]}"; do
-            echo "Moving $file"
-            chmod +x "$file"
-            mv "$file" ${{ github.workspace }}/nuget-packages/bin/
-          done
-
-          # Add to system path
-          echo "Adding to system path"
-          echo "${{ github.workspace }}/nuget-packages/bin" >> $GITHUB_PATH
 
       - name: Run generator
         if: env.changed == 'true'
