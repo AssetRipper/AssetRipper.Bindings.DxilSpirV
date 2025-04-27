@@ -57,15 +57,13 @@ jobs:
           # List the directory contents
           ls -R ${{ github.workspace }}/nuget-packages
 
-          # Unzip the packages
-          files=($(find ${{ github.workspace }}/nuget-packages -maxdepth 1 -type f))
+          # Moving the libraries to the bin directory
+          files=($(find ${{ github.workspace }}/nuget-packages -type f -name "*.so"))
           for file in "${files[@]}"; do
-            echo "Unzipping $file"
-            unzip "$file" '*.so' -o -j -d ${{ github.workspace }}/nuget-packages/bin
+            echo "Moving $file"
+            chmod +x "$file"
+            mv "$file" ${{ github.workspace }}/nuget-packages/bin/
           done
-
-          # Make files executable
-          chmod +x ${{ github.workspace }}/nuget-packages/bin/*.so
 
           # Add to system path
           echo "${{ github.workspace }}/nuget-packages/bin" >> $GITHUB_ENV
