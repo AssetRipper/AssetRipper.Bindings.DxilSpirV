@@ -23,6 +23,12 @@ jobs:
 
     name: Build - ${{ matrix.config.os }} ${{ matrix.config.arch }}
     steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install MSVC ARM64 Tools (Windows ARM64)
         if: matrix.config.os == 'Windows' && matrix.config.arch == 'arm64'
         uses: ilammy/msvc-dev-cmd@v1
