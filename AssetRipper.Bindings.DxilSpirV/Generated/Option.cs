@@ -47,5 +47,6 @@ public enum Option
     ShaderQuirk = 42,
     ExtendedRobustness = 43,
     MaxTessFactor = 44,
+    VulkanMemoryModel = 45,
     IntMax = 0x7fffffff,
 }
