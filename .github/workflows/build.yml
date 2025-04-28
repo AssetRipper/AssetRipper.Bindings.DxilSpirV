@@ -184,6 +184,7 @@ jobs:
         dotnet nuget push ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
 
   automerge:
+    name: Automatically Merge
     runs-on: ubuntu-latest
     if: (github.actor == 'github-actions[bot]' || github.actor == 'dependabot[bot]' || github.actor == 'ds5678') && github.event_name == 'pull_request'
     needs: build_managed
