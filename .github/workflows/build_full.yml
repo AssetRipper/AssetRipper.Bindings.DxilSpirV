@@ -165,7 +165,7 @@ jobs:
 
     - name: Build
       working-directory: ./AssetRipper.Bindings.DxilSpirV
-      run: dotnet build -c Release /p:VersionSuffix=${{ github.run_number }}
+      run: dotnet build -c Release /p:VersionSuffix=nightly.${{ github.run_number }}
 
     - name: Upload NuGet Package
       uses: actions/upload-artifact@v4
@@ -173,3 +173,8 @@ jobs:
         name: NuGet Package
         path: ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg
         if-no-files-found: error
+
+    - name: Push to NuGet.org
+      if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && github.repository == 'AssetRipper/AssetRipper.Bindings.DxilSpirV'
+      run: |
+        dotnet nuget push ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
