@@ -172,6 +172,10 @@ public static unsafe partial class NativeMethods
     [return: NativeTypeName("dxil_spv_result")]
     public static extern Result ConverterGetComputeHeuristicMaxWaveSize([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("unsigned int *")] uint* wave_size);
 
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_get_compute_heuristic_min_wave_size", ExactSpelling = true)]
+    [return: NativeTypeName("dxil_spv_result")]
+    public static extern Result ConverterGetComputeHeuristicMinWaveSize([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("unsigned int *")] uint* wave_size);
+
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_get_patch_vertex_count", ExactSpelling = true)]
     [return: NativeTypeName("dxil_spv_result")]
     public static extern Result ConverterGetPatchVertexCount([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("unsigned int *")] uint* patch_vertices);
@@ -196,8 +200,8 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int ApiVersionMajor = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 51")]
-    public const int ApiVersionMinor = 51;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 52")]
+    public const int ApiVersionMinor = 52;
 
     [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
     public const int ApiVersionPatch = 0;
