@@ -49,5 +49,6 @@ public enum Option
     MaxTessFactor = 44,
     VulkanMemoryModel = 45,
     Float8Support = 46,
+    Nvapi = 47,
     IntMax = 0x7fffffff,
 }
