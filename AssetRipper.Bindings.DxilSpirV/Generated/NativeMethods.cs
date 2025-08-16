@@ -132,6 +132,9 @@ public static unsafe partial class NativeMethods
     [return: NativeTypeName("dxil_spv_result")]
     public static extern Result ConverterEndLocalRootDescriptorTable([NativeTypeName("dxil_spv_converter")] Converter* converter);
 
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_set_patch_location_offset", ExactSpelling = true)]
+    public static extern void ConverterSetPatchLocationOffset([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("unsigned int")] uint Offset);
+
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_run", ExactSpelling = true)]
     [return: NativeTypeName("dxil_spv_result")]
     public static extern Result ConverterRun([NativeTypeName("dxil_spv_converter")] Converter* converter);
@@ -180,6 +183,10 @@ public static unsafe partial class NativeMethods
     [return: NativeTypeName("dxil_spv_result")]
     public static extern Result ConverterGetPatchVertexCount([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("unsigned int *")] uint* patch_vertices);
 
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_get_patch_location_offset", ExactSpelling = true)]
+    [return: NativeTypeName("dxil_spv_result")]
+    public static extern Result ConverterGetPatchLocationOffset([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("unsigned int *")] uint* patch_location_offset);
+
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_uses_shader_feature", ExactSpelling = true)]
     [return: NativeTypeName("dxil_spv_bool")]
     public static extern byte ConverterUsesShaderFeature([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("dxil_spv_shader_feature")] ShaderFeature feature);
@@ -200,8 +207,8 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int ApiVersionMajor = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 54")]
-    public const int ApiVersionMinor = 54;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 55")]
+    public const int ApiVersionMinor = 55;
 
     [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
     public const int ApiVersionPatch = 0;

@@ -117,6 +117,9 @@ public static unsafe partial class NativeMethods
     public static extern dxil_spv_result dxil_spv_converter_end_local_root_descriptor_table([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter);
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern void dxil_spv_converter_set_patch_location_offset([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, [NativeTypeName("unsigned int")] uint offset);
+
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern dxil_spv_result dxil_spv_converter_run([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter);
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -155,6 +158,9 @@ public static unsafe partial class NativeMethods
     public static extern dxil_spv_result dxil_spv_converter_get_patch_vertex_count([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, [NativeTypeName("unsigned int *")] uint* patch_vertices);
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern dxil_spv_result dxil_spv_converter_get_patch_location_offset([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, [NativeTypeName("unsigned int *")] uint* patch_location_offset);
+
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     [return: NativeTypeName("dxil_spv_bool")]
     public static extern byte dxil_spv_converter_uses_shader_feature([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, dxil_spv_shader_feature feature);
 
@@ -174,8 +180,8 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int DXIL_SPV_API_VERSION_MAJOR = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 54")]
-    public const int DXIL_SPV_API_VERSION_MINOR = 54;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 55")]
+    public const int DXIL_SPV_API_VERSION_MINOR = 55;
 
     [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
     public const int DXIL_SPV_API_VERSION_PATCH = 0;
