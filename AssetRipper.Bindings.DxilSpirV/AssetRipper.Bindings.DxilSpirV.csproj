@@ -29,7 +29,7 @@
 
 	<ItemGroup>
 
-	  <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.8" />
+	  <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.9" />
 		<None Include="../README.md" Pack="true" PackagePath="\" />
 		<None Include="NativeLibraries\**\*.*" Pack="true" PackagePath="runtimes\" />
 	</ItemGroup>
