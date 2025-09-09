@@ -13,7 +13,7 @@
 
 	  <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="9.0.8" />
 
-	  <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.8" />
+	  <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.9" />
 		<ProjectReference Include="..\AssetRipper.Bindings.DxilSpirV\AssetRipper.Bindings.DxilSpirV.csproj" />
 	</ItemGroup>
 
