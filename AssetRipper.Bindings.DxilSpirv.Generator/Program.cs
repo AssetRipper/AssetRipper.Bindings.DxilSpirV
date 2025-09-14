@@ -41,7 +41,7 @@ internal static class Program
 			const string ResponsePath = "generate_actual.rsp";
 			File.WriteAllText(ResponsePath, sb.ToString());
 
-			Process? process = Process.Start(new ProcessStartInfo("ClangSharpPInvokeGenerator", "@generate_actual.rsp"));
+			Process? process = Process.Start(new ProcessStartInfo("dotnet", ["tool", "run", "ClangSharpPInvokeGenerator", "@generate_actual.rsp"]));
 
 			process?.WaitForExit();
 

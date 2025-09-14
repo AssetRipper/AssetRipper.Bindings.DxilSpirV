@@ -18,7 +18,7 @@ internal static class Program
 				Directory.Delete(OutputPath, true);
 			}
 
-			Process? process = Process.Start(new ProcessStartInfo("ClangSharpPInvokeGenerator", "@generate.rsp"));
+			Process? process = Process.Start(new ProcessStartInfo("dotnet", ["tool", "run", "ClangSharpPInvokeGenerator", "@generate.rsp"]));
 
 			process?.WaitForExit();
 		}

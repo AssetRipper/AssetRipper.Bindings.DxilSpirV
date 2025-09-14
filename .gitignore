@@ -10,3 +10,4 @@ bin
 .vscode
 launchSettings.json
 NativeLibraries/
+.config/dotnet-tools.json
