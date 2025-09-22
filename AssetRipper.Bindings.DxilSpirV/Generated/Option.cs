@@ -50,5 +50,6 @@ public enum Option
     VulkanMemoryModel = 45,
     Float8Support = 46,
     Nvapi = 47,
+    ExtendedNonSemantic = 48,
     IntMax = 0x7fffffff,
 }
