@@ -23,7 +23,7 @@ jobs:
           - { name: win_arm64, runner: windows-latest, os: Windows, arch: arm64 }
           - { name: linux_x64, runner: ubuntu-22.04, os: Linux, arch: x64 }
           - { name: linux_arm64, runner: ubuntu-22.04, os: Linux, arch: arm64 }
-          #- { name: mac_x64, runner: macos-14, os: MacOS, arch: x64 }
+          - { name: mac_x64, runner: macos-14, os: MacOS, arch: x64 }
           - { name: mac_arm64, runner: macos-14, os: MacOS, arch: arm64 }
 
     steps:
