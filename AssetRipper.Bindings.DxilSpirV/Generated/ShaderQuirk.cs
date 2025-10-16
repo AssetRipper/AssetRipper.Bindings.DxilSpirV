@@ -12,5 +12,6 @@ public enum ShaderQuirk
     PromoteGroupToDeviceMemoryBarrier = 7,
     GroupSharedAutoBarrier = 8,
     FixupLoopHeaderUndefPhis = 9,
+    FixupRsqrtInfNan = 10,
     IntMax = 0x7fffffff,
 }
