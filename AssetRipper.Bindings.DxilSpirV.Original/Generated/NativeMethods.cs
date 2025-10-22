@@ -178,6 +178,9 @@ public static unsafe partial class NativeMethods
     public static extern sbyte* dxil_spv_converter_get_analysis_warnings([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter);
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern dxil_spv_result dxil_spv_converter_set_meta_descriptor([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, dxil_spv_meta_descriptor meta, dxil_spv_meta_descriptor_kind kind, [NativeTypeName("unsigned int")] uint desc_set, [NativeTypeName("unsigned int")] uint binding_or_push_index);
+
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern void dxil_spv_begin_thread_allocator_context();
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -189,8 +192,8 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int DXIL_SPV_API_VERSION_MAJOR = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 59")]
-    public const int DXIL_SPV_API_VERSION_MINOR = 59;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 60")]
+    public const int DXIL_SPV_API_VERSION_MINOR = 60;
 
     [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
     public const int DXIL_SPV_API_VERSION_PATCH = 0;

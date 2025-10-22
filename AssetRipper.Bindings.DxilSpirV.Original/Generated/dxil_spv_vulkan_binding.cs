@@ -11,7 +11,7 @@ public partial struct dxil_spv_vulkan_binding
     [NativeTypeName("unsigned int")]
     public uint root_constant_index;
 
-    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L274_C2")]
+    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L292_C2")]
     public _bindless_e__Struct bindless;
 
     public dxil_spv_vulkan_descriptor_type descriptor_type;
