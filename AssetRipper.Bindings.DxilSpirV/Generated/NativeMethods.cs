@@ -204,6 +204,10 @@ public static unsafe partial class NativeMethods
     [return: NativeTypeName("const char *")]
     public static extern sbyte* ConverterGetAnalysisWarnings([NativeTypeName("dxil_spv_converter")] Converter* converter);
 
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_converter_set_meta_descriptor", ExactSpelling = true)]
+    [return: NativeTypeName("dxil_spv_result")]
+    public static extern Result ConverterSetMetaDescriptor([NativeTypeName("dxil_spv_converter")] Converter* converter, [NativeTypeName("dxil_spv_meta_descriptor")] MetaDescriptor meta, [NativeTypeName("dxil_spv_meta_descriptor_kind")] MetaDescriptorKind Kind, [NativeTypeName("unsigned int")] uint DescSet, [NativeTypeName("unsigned int")] uint binding_or_push_index);
+
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, EntryPoint = "dxil_spv_begin_thread_allocator_context", ExactSpelling = true)]
     public static extern void BeginThreadAllocatorContext();
 
@@ -216,8 +220,8 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int ApiVersionMajor = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 59")]
-    public const int ApiVersionMinor = 59;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 60")]
+    public const int ApiVersionMinor = 60;
 
     [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
     public const int ApiVersionPatch = 0;
