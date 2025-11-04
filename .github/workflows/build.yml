@@ -190,7 +190,4 @@ jobs:
     if: (github.actor == 'github-actions[bot]' || github.actor == 'dependabot[bot]' || github.actor == 'ds5678') && github.event_name == 'pull_request'
     needs: build_managed
     steps:
-      - uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          pull-request-number: ${{ github.event.pull_request.number }}
-          merge-method: squash
+      - run: gh pr merge --squash --auto "${{ github.event.pull_request.number }}"
