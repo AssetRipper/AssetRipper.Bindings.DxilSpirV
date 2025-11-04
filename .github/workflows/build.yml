@@ -130,7 +130,6 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 10.0.x
-        include-prerelease: true
 
     - name: Download Native - Windows Arm64
       uses: actions/download-artifact@v6
