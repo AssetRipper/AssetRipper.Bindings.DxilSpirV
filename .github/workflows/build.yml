@@ -22,7 +22,7 @@ jobs:
           - { name: win_x64, runner: windows-latest, os: Windows, arch: x64 }
           - { name: win_arm64, runner: windows-latest, os: Windows, arch: arm64 }
           - { name: linux_x64, runner: ubuntu-22.04, os: Linux, arch: x64 }
-          - { name: linux_arm64, runner: ubuntu-22.04, os: Linux, arch: arm64 }
+          - { name: linux_arm64, runner: ubuntu-22.04-arm, os: Linux, arch: arm64 }
           - { name: mac_x64, runner: macos-14, os: MacOS, arch: x64 }
           - { name: mac_arm64, runner: macos-14, os: MacOS, arch: arm64 }
 
@@ -39,17 +39,11 @@ jobs:
         with:
           arch: arm64
 
-      - name: Install Dependencies (Linux ARM64)
-        if: matrix.config.os == 'Linux' && matrix.config.arch == 'arm64'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu cmake
-
       - name: Update Submodules
         run: git submodule update --init --recursive
         
-      - name: Build (x64)
-        if: matrix.config.arch == 'x64'
+      - name: Build (Windows x64)
+        if: matrix.config.os == 'Windows' && matrix.config.arch == 'x64'
         working-directory: ./NativeCode
         run: |
           mkdir build
@@ -66,17 +60,24 @@ jobs:
           cmake .. -DCMAKE_BUILD_TYPE=Release -A ARM64
           cmake --build . --config Release
 
-      - name: Build (Linux ARM64)
-        if: matrix.config.os == 'Linux' && matrix.config.arch == 'arm64'
+      - name: Build (Linux)
+        if: matrix.config.os == 'Linux'
         working-directory: ./NativeCode
         run: |
           mkdir build
           cd build
-          cmake .. -DCMAKE_SYSTEM_NAME=Linux \
-                   -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
-                   -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
-                   -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
-                   -DCMAKE_BUILD_TYPE=Release
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --config Release
+
+      - name: Build (macOS x64)
+        if: matrix.config.os == 'MacOS' && matrix.config.arch == 'x64'
+        working-directory: ./NativeCode
+        run: |
+          mkdir build
+          cd build
+          cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_OSX_ARCHITECTURES=x86_64
           cmake --build . --config Release
 
       - name: Build (macOS ARM64)
