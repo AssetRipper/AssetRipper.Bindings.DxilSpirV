@@ -178,13 +178,43 @@ jobs:
         path: ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg
         if-no-files-found: error
 
+    - name: Calculate conditions
+      id: conditions
+      run: |
+        NUGET_PUSH_CONDITION=false
+        AUTO_MERGE_CONDITION=false
+
+        # Check normal push-to-NuGet condition
+        if [[ ("${{ github.event_name }}" == "push" || "${{ github.event_name }}" == "workflow_dispatch") && \
+          "${{ github.ref }}" == "refs/heads/main" && \
+          "${{ github.repository }}" == "AssetRipper/AssetRipper.Bindings.DxilSpirV" ]]; then
+          NUGET_PUSH_CONDITION=true
+        fi
+
+        # Check auto-merge condition
+        if [[ ("${{ github.actor }}" == "github-actions[bot]" || \
+          "${{ github.actor }}" == "dependabot[bot]" || \
+          "${{ github.actor }}" == "ds5678") && \
+          "${{ github.event_name }}" == "pull_request" && \
+          "${{ github.repository }}" == "AssetRipper/AssetRipper.Bindings.DxilSpirV" ]]; then
+          AUTO_MERGE_CONDITION=true
+        fi
+
+        # If either is true, enable NuGet push
+        if [[ "$AUTO_MERGE_CONDITION" == "true" ]]; then
+          NUGET_PUSH_CONDITION=true
+        fi
+
+        echo "nuget_push_condition=$NUGET_PUSH_CONDITION" >> $GITHUB_OUTPUT
+        echo "auto_merge_condition=$AUTO_MERGE_CONDITION" >> $GITHUB_OUTPUT
+
     - name: Push to NuGet.org
-      if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && github.repository == 'AssetRipper/AssetRipper.Bindings.DxilSpirV'
+      if: steps.conditions.outputs.nuget_push_condition == 'true'
       run: |
         dotnet nuget push ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
 
     - name: Automatically Merge
-      if: (github.actor == 'github-actions[bot]' || github.actor == 'dependabot[bot]' || github.actor == 'ds5678') && github.event_name == 'pull_request'
+      if: steps.conditions.outputs.auto_merge_condition == 'true'
       run: gh pr merge --squash --auto "${{ github.event.pull_request.number }}"
       env:
         GH_TOKEN: ${{ github.token }}
