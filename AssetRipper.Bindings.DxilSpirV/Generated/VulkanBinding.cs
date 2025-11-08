@@ -11,7 +11,7 @@ public partial struct VulkanBinding
     [NativeTypeName("unsigned int")]
     public uint RootConstantIndex;
 
-    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L292_C2")]
+    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L294_C2")]
     public _Bindless_e__Struct Bindless;
 
     [NativeTypeName("dxil_spv_vulkan_descriptor_type")]
