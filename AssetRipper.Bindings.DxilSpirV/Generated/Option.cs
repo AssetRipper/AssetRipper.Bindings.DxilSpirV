@@ -51,5 +51,6 @@ public enum Option
     Float8Support = 46,
     Nvapi = 47,
     ExtendedNonSemantic = 48,
+    ViewInstancing = 49,
     IntMax = 0x7fffffff,
 }
