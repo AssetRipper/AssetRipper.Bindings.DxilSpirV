@@ -6,5 +6,7 @@ public enum VulkanDescriptorType
     Ssbo = 1,
     TexelBuffer = 2,
     BufferDeviceAddress = 3,
+    Ubo = 4,
+    InputAttachment = 5,
     IntMax = 0x7fffffff,
 }
