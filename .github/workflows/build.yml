@@ -97,7 +97,7 @@ jobs:
 
       - name: Upload (Windows)
         if: matrix.config.os == 'Windows'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: native_${{ matrix.config.name }}
           path: NativeCode/build/Release/dxil-spirv-c-shared.dll
@@ -105,7 +105,7 @@ jobs:
 
       - name: Upload (Linux)
         if: matrix.config.os == 'Linux'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: native_${{ matrix.config.name }}
           path: NativeCode/build/libdxil-spirv-c-shared.so
@@ -113,7 +113,7 @@ jobs:
 
       - name: Upload (MacOS)
         if: matrix.config.os == 'MacOS'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: native_${{ matrix.config.name }}
           path: NativeCode/build/libdxil-spirv-c-shared.dylib
@@ -173,7 +173,7 @@ jobs:
       run: dotnet build -c Release /p:VersionSuffix=nightly.${{ github.run_number }}
 
     - name: Upload NuGet Package
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: NuGet Package
         path: ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg
