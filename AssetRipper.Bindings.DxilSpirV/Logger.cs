@@ -11,10 +11,7 @@ public static unsafe class Logger
 	[UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
 	internal static void LogMessage(void* userData, LogLevel level, sbyte* message)
 	{
-		if (Callback is not null)
-		{
-			Callback.Invoke(level, NativeString.ToString(message));
-		}
+		Callback?.Invoke(level, NativeString.ToString(message));
 	}
 
 	public static void AddConsoleLogger()
