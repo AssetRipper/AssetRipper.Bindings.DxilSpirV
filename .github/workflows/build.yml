@@ -191,6 +191,11 @@ jobs:
           "${{ github.repository }}" == "AssetRipper/AssetRipper.Bindings.DxilSpirV" ]]; then
           NUGET_PUSH_CONDITION=true
         fi
+        if [[ "${{ github.actor }}" == "ds5678" && \
+          "${{ github.event_name }}" == "pull_request" && \
+          "${{ github.repository }}" == "AssetRipper/AssetRipper.Bindings.DxilSpirV" ]]; then
+          NUGET_PUSH_CONDITION=true
+        fi
 
         # Check auto-merge condition
         if [[ ("${{ github.actor }}" == "github-actions[bot]" || \
@@ -199,11 +204,6 @@ jobs:
           "${{ github.event_name }}" == "pull_request" && \
           "${{ github.repository }}" == "AssetRipper/AssetRipper.Bindings.DxilSpirV" ]]; then
           AUTO_MERGE_CONDITION=true
-        fi
-
-        # If either is true, enable NuGet push
-        if [[ "$AUTO_MERGE_CONDITION" == "true" ]]; then
-          NUGET_PUSH_CONDITION=true
         fi
 
         echo "nuget_push_condition=$NUGET_PUSH_CONDITION" >> $GITHUB_OUTPUT
