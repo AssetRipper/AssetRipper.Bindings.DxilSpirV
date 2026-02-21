@@ -52,5 +52,6 @@ public enum Option
     Nvapi = 47,
     ExtendedNonSemantic = 48,
     ViewInstancing = 49,
+    MixedFloatDotProduct = 50,
     IntMax = 0x7fffffff,
 }
