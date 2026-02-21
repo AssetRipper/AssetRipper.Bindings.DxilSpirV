@@ -13,5 +13,6 @@ public enum ShaderQuirk
     GroupSharedAutoBarrier = 8,
     FixupLoopHeaderUndefPhis = 9,
     FixupRsqrtInfNan = 10,
+    IgnorePrimitiveShadingRate = 11,
     IntMax = 0x7fffffff,
 }

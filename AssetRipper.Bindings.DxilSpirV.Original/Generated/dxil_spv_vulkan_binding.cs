@@ -12,10 +12,10 @@ public partial struct dxil_spv_vulkan_binding
     [NativeTypeName("unsigned int")]
     public uint binding;
 
-    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L293_C2")]
+    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L294_C2")]
     public _Anonymous_e__Union Anonymous;
 
-    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L305_C2")]
+    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L306_C2")]
     public _bindless_e__Struct bindless;
 
     public dxil_spv_vulkan_descriptor_type descriptor_type;
