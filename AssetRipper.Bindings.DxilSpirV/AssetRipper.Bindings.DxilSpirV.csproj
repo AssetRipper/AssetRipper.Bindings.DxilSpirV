@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<LangVersion>Latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -28,8 +28,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-
-	  <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.8" />
 		<None Include="../README.md" Pack="true" PackagePath="\" />
 		<None Include="NativeLibraries\**\*.*" Pack="true" PackagePath="runtimes\" />
 	</ItemGroup>
