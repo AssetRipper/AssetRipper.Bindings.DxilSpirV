@@ -53,5 +53,6 @@ public enum Option
     ExtendedNonSemantic = 48,
     ViewInstancing = 49,
     MixedFloatDotProduct = 50,
+    ComputeShaderDerivativesQuad = 51,
     IntMax = 0x7fffffff,
 }
