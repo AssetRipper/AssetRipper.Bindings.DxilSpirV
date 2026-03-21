@@ -4,7 +4,7 @@ namespace AssetRipper.Bindings.DxilSpirV;
 
 public partial struct dxil_spv_cbv_vulkan_binding
 {
-    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L342_C2")]
+    [NativeTypeName("__AnonymousRecord_dxil_spirv_c_L343_C2")]
     public _vulkan_e__Union vulkan;
 
     [NativeTypeName("dxil_spv_bool")]

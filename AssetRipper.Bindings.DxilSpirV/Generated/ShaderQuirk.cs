@@ -15,5 +15,6 @@ public enum ShaderQuirk
     FixupRsqrtInfNan = 10,
     IgnorePrimitiveShadingRate = 11,
     RobustComputeQuadBroadcast = 12,
+    PreciseFma = 13,
     IntMax = 0x7fffffff,
 }
