@@ -16,5 +16,6 @@ public enum ShaderQuirk
     IgnorePrimitiveShadingRate = 11,
     RobustComputeQuadBroadcast = 12,
     PreciseFma = 13,
+    ClampWaveSizeToThreadGroup32 = 14,
     IntMax = 0x7fffffff,
 }
