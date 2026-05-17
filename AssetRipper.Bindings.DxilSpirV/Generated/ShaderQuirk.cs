@@ -17,5 +17,6 @@ public enum ShaderQuirk
     RobustComputeQuadBroadcast = 12,
     PreciseFma = 13,
     ClampWaveSizeToThreadGroup32 = 14,
+    ForceNonuniform = 16,
     IntMax = 0x7fffffff,
 }
