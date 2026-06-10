@@ -54,5 +54,6 @@ public enum Option
     ViewInstancing = 49,
     MixedFloatDotProduct = 50,
     ComputeShaderDerivativesQuad = 51,
+    SsboAddressingBehavior = 52,
     IntMax = 0x7fffffff,
 }
