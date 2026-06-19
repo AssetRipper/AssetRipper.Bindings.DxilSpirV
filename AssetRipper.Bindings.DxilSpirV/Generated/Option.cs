@@ -34,7 +34,6 @@ public enum Option
     DeadCodeEliminate = 29,
     PreciseControl = 30,
     SampleGradOptimizationControl = 31,
-    OpacityMicromap = 32,
     BranchControl = 33,
     SubgroupProperties = 34,
     DescriptorHeapRobustness = 35,
@@ -55,5 +54,6 @@ public enum Option
     MixedFloatDotProduct = 50,
     ComputeShaderDerivativesQuad = 51,
     SsboAddressingBehavior = 52,
+    OpacityMicromap = 53,
     IntMax = 0x7fffffff,
 }
