@@ -55,5 +55,6 @@ public enum Option
     ComputeShaderDerivativesQuad = 51,
     SsboAddressingBehavior = 52,
     OpacityMicromap = 53,
+    FloatControls2 = 54,
     IntMax = 0x7fffffff,
 }
