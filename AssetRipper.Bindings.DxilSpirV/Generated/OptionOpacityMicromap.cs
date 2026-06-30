@@ -6,8 +6,8 @@ public partial struct OptionOpacityMicromap
     public OptionBase Base;
 
     [NativeTypeName("dxil_spv_bool")]
-    public byte Enabled;
+    public byte TraceRayEnabled;
 
     [NativeTypeName("dxil_spv_bool")]
-    public byte RayQueryForceOmmExecutionMode;
+    public byte RayQueryForceOmmExecutionModeInLegacySm;
 }
