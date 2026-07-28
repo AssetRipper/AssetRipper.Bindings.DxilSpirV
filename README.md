@@ -18,7 +18,3 @@ Compiled native binaries should be placed in the `NativeLibaries` directory. Thi
 * `./AssetRipper.Bindings.DxilSpirV/NativeLibraries/linux-x64/native/`
 * `./AssetRipper.Bindings.DxilSpirV/NativeLibraries/osx-arm64/native/`
 * `./AssetRipper.Bindings.DxilSpirV/NativeLibraries/osx-x64/native/`
-
-## Pull Requests
-
-I ([ds5678](https://github.com/ds5678)) have notifications disabled for this repository because to because I don't wish to receive notifications when automated pull requests are created and merged. For normal pull requests, you should include `@ds5678` in the pull request description. Otherwise, it could be many months before I notice it.
