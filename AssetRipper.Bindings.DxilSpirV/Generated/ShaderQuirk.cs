@@ -19,5 +19,6 @@ public enum ShaderQuirk
     ClampWaveSizeToThreadGroup32 = 14,
     NonSemanticSignalConcurrentWorkgroup = 15,
     ForceNonuniform = 16,
+    ForceDenormPreserveFp16Conversions = 17,
     IntMax = 0x7fffffff,
 }
