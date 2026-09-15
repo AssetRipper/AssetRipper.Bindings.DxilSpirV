@@ -220,11 +220,11 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int ApiVersionMajor = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 72")]
-    public const int ApiVersionMinor = 72;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 73")]
+    public const int ApiVersionMinor = 73;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 1")]
-    public const int ApiVersionPatch = 1;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
+    public const int ApiVersionPatch = 0;
 
     [NativeTypeName("#define DXIL_SPV_DESCRIPTOR_QA_INTERFACE_VERSION 2")]
     public const int DescriptorQaInterfaceVersion = 2;
