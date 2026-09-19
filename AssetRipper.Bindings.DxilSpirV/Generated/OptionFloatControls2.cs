@@ -1,6 +1,6 @@
 namespace AssetRipper.Bindings.DxilSpirV;
 
-public partial struct OptionsFloatControls2
+public partial struct OptionFloatControls2
 {
     [NativeTypeName("dxil_spv_option_base")]
     public OptionBase Base;

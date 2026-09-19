@@ -56,5 +56,6 @@ public enum Option
     SsboAddressingBehavior = 52,
     OpacityMicromap = 53,
     FloatControls2 = 54,
+    ShaderAbort = 55,
     IntMax = 0x7fffffff,
 }
