@@ -1,6 +1,6 @@
 namespace AssetRipper.Bindings.DxilSpirV;
 
-public partial struct dxil_spv_options_float_controls_2
+public partial struct dxil_spv_option_float_controls_2
 {
     public dxil_spv_option_base @base;
 
