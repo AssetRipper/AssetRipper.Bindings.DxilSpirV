@@ -57,5 +57,6 @@ public enum Option
     OpacityMicromap = 53,
     FloatControls2 = 54,
     ShaderAbort = 55,
+    ConservativeSsboVectorization = 56,
     IntMax = 0x7fffffff,
 }
