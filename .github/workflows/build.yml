@@ -23,8 +23,8 @@ jobs:
           - { name: win_arm64, runner: windows-latest, os: Windows, arch: arm64 }
           - { name: linux_x64, runner: ubuntu-22.04, os: Linux, arch: x64 }
           - { name: linux_arm64, runner: ubuntu-22.04-arm, os: Linux, arch: arm64 }
-          - { name: mac_x64, runner: macos-14, os: MacOS, arch: x64 }
-          - { name: mac_arm64, runner: macos-14, os: MacOS, arch: arm64 }
+          - { name: mac_x64, runner: macos-15, os: MacOS, arch: x64 }
+          - { name: mac_arm64, runner: macos-15, os: MacOS, arch: arm64 }
 
     steps:
       - name: Checkout repository (with submodules)
@@ -123,6 +123,8 @@ jobs:
     name: Build - Managed
     runs-on: ubuntu-latest
     needs: build_native
+    permissions:
+      id-token: write
 
     steps:
     - uses: actions/checkout@v7
@@ -209,10 +211,17 @@ jobs:
         echo "nuget_push_condition=$NUGET_PUSH_CONDITION" >> $GITHUB_OUTPUT
         echo "auto_merge_condition=$AUTO_MERGE_CONDITION" >> $GITHUB_OUTPUT
 
+    - name: NuGet login
+      if: steps.conditions.outputs.nuget_push_condition == 'true'
+      uses: NuGet/login@v1
+      id: login
+      with:
+        user: ds5678
+
     - name: Push to NuGet.org
       if: steps.conditions.outputs.nuget_push_condition == 'true'
       run: |
-        dotnet nuget push ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+        dotnet nuget push ./AssetRipper.Bindings.DxilSpirV/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --skip-duplicate
 
     - name: Automatically Merge
       if: steps.conditions.outputs.auto_merge_condition == 'true'
