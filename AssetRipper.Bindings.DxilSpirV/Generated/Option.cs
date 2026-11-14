@@ -58,5 +58,6 @@ public enum Option
     FloatControls2 = 54,
     ShaderAbort = 55,
     ConservativeSsboVectorization = 56,
+    LegacyStructurizer = 57,
     IntMax = 0x7fffffff,
 }

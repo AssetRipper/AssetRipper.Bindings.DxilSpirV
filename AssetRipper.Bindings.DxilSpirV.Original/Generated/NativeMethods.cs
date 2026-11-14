@@ -129,6 +129,9 @@ public static unsafe partial class NativeMethods
     public static extern void dxil_spv_converter_set_patch_location_offset([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, [NativeTypeName("unsigned int")] uint offset);
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern void dxil_spv_converter_set_can_feed_rasterizer([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter, [NativeTypeName("dxil_spv_bool")] byte enable);
+
+    [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern dxil_spv_result dxil_spv_converter_run([NativeTypeName("dxil_spv_converter")] dxil_spv_converter_s* converter);
 
     [DllImport("dxil-spirv-c-shared", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -192,8 +195,8 @@ public static unsafe partial class NativeMethods
     [NativeTypeName("#define DXIL_SPV_API_VERSION_MAJOR 2")]
     public const int DXIL_SPV_API_VERSION_MAJOR = 2;
 
-    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 75")]
-    public const int DXIL_SPV_API_VERSION_MINOR = 75;
+    [NativeTypeName("#define DXIL_SPV_API_VERSION_MINOR 78")]
+    public const int DXIL_SPV_API_VERSION_MINOR = 78;
 
     [NativeTypeName("#define DXIL_SPV_API_VERSION_PATCH 0")]
     public const int DXIL_SPV_API_VERSION_PATCH = 0;
