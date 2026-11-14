@@ -8,5 +8,6 @@ public enum VulkanDescriptorType
     BufferDeviceAddress = 3,
     Ubo = 4,
     InputAttachment = 5,
+    SsboScalarAligned = 6,
     IntMax = 0x7fffffff,
 }
