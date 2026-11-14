@@ -1,9 +1,5 @@
 name: Build
 
-permissions:
-  pull-requests: write
-  contents: write
-
 on:
   push:
     branches: [ "main" ]
@@ -125,6 +121,8 @@ jobs:
     needs: build_native
     permissions:
       id-token: write
+      pull-requests: write
+      contents: write
 
     steps:
     - uses: actions/checkout@v7
