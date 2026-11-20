@@ -20,5 +20,6 @@ public enum ShaderQuirk
     NonSemanticSignalConcurrentWorkgroup = 15,
     ForceNonuniform = 16,
     ForceDenormPreserveFp16Conversions = 17,
+    ForceLegacyMemoryModelCoherentImages = 18,
     IntMax = 0x7fffffff,
 }
